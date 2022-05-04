@@ -1,0 +1,169 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+}
+body{
+    margin:0;
+}
+:root{
+    --cell-size:100px;
+    --mark-size:calc(var(--cell-size)*0.9);
+}
+.board{
+    width:100vw;
+    height:100vh;
+    display:grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3,auto);
+}
+.cell{
+    width:var(--cell-size);
+    height:var(--cell-size);
+    border: 1px solid black;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3){
+    border-top: 0px;
+}
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9){
+    border-bottom: 0px;
+}
+.cell:nth-child(3n+1){
+    border-left: 0px;
+}
+.cell:nth-child(3n+3){
+    border-right: 0px;
+}
+.cell.x::before,.cell.x::after,
+.cell.O::before,.cell.O::after{
+    background-color: black;
+}
+
+.board.x .cell:not(.x):not(.O):hover::before,
+.board.x .cell:not(.x):not(.O):hover::after,
+.board.O .cell:not(.x):not(.O):hover::before,
+.board.O .cell:not(.x):not(.O):hover::after{
+    background-color: lightgray;
+}
+
+.cell.x::before,.cell.x::after,
+.board.x .cell:not(.x):not(.O):hover::before,
+.board.x .cell:not(.x):not(.O):hover::after{
+    position: absolute;
+    content:'';
+    width:13.5px;
+    height:90px ;
+}
+.cell.x::before,
+.board.x .cell:not(.x):not(.O):hover::before{
+    transform: rotate(45deg);
+}
+.cell.x::after,
+.board.x .cell:not(.x):not(.O):hover::after{
+    transform: rotate(-45deg);
+}
+.cell.O::before,.cell.O::after,
+.board.O .cell:not(.x):not(.O):hover::before,
+.board.O .cell:not(.x):not(.O):hover::after{
+    position: absolute;
+    border-radius: 50%;
+    content:'';
+}
+.cell.O::before,.board.O .cell:not(.x):not(.O):hover::before{
+    width:90px;
+    height:90px ;
+
+}
+.cell.O::after,.board.O .cell:not(.x):not(.O):hover::after{
+    width:63px;
+    height:63px;
+    background-color: white;
+}
+
+.cell.x,.cell.O{
+    cursor:not-allowed;
+}
+
+.winning-message{
+    display: none;
+    position:fixed;
+    background-color:rgba(0,0,0,0.9);
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color:white;
+    font-size: 20px;
+}
+.winning-message button{
+    border:1px solid black;
+    background-color: white;
+    font-size: 20px;
+    padding:5px;
+    cursor: pointer;
+}
+.winning-message button:hover{
+    background-color: black;
+    color:white;
+    border-color:white;
+}
+
+.winning-message.show{
+    display:flex;
+}
+
+
+/* body{
+    display:flex;
+    justify-content: center;
+    padding-top: 100px;
+    background-color: black;
+}
+td{
+    border: 2px solid white;
+    height: 100px;
+    width:100px;
+    cursor:pointer;
+    text-align: center;
+    font-size: 60px;
+    color:white;
+
+}
+table{
+    border-collapse: collapse;
+
+}
+tr:first-child td{
+    border-top:0;
+}
+tr td:first-child{
+    border-left:0;
+}
+tr  td:last-child{
+    border-right:0;
+}
+tr:last-child td{
+    border-bottom:0;
+}
+.game{
+    position: absolute;
+    top:80%;
+}
+button{
+    width:100px;
+    height:50px;
+    font-size:20px;
+} */
